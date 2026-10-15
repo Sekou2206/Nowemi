@@ -1,14 +1,26 @@
 import * as THREE from './three.module.js';
 import {surface,textile,glaze} from './materials.js';
-const $=s=>document.querySelector(s), count=7;
-const works=[{"title": "Le regard", "ratio": 0.7924281984334204, "x": 0, "z": -6.83, "rotation": 0, "description": "Un portrait noir et blanc au regard intense, entouré de mains.", "image": "oeuvre-01.png", "h": 2.8, "w": 2.2187989556135768}, {"title": "À la palette", "ratio": 0.8955613577023499, "x": -5.83, "z": -3.2, "rotation": 1.5707963267948966, "description": "Une artiste à la casquette rouge, pinceau et palette en main.", "image": "oeuvre-02.png", "h": 2.8, "w": 2.5075718015665798}, {"title": "Pas de danse", "ratio": 0.8955613577023499, "x": 5.83, "z": -3.2, "rotation": -1.5707963267948966, "description": "Deux personnages souriants réunis dans un mouvement de danse.", "image": "oeuvre-03.png", "h": 2.8, "w": 2.5075718015665798}, {"title": "Portrait sur fond vert", "ratio": 0.8955613577023499, "x": -5.83, "z": 2, "rotation": 1.5707963267948966, "description": "Un personnage aux yeux verts, vêtu de rouge sur un fond vert.", "image": "oeuvre-04.png", "h": 2.8, "w": 2.5075718015665798}, {"title": "Énergie", "ratio": 0.821505376344086, "x": 5.83, "z": 2, "rotation": -1.5707963267948966, "description": "Une composition expressive aux accents de bande dessinée.", "image": "oeuvre-05.png", "h": 2.8, "w": 2.3002150537634405}, {"title": "Le basketteur", "ratio": 0.6573033707865169, "x": -5.83, "z": 7.5, "rotation": 1.5707963267948966, "description": "Un personnage souriant en tenue claire, un ballon de basket sous le bras.", "image": "oeuvre-06.png", "h": 2.8, "w": 1.840449438202247}, {"title": "Pensif", "ratio": 0.6573033707865169, "x": 5.83, "z": 7.5, "rotation": -1.5707963267948966, "description": "Un personnage en noir, la main posée contre le visage.", "image": "oeuvre-07.png", "h": 2.8, "w": 1.840449438202247}];
+const works=[{"title": "Le regard", "ratio": .7924281984334204, "x": 0, "z": -6.83, "rotation": 0, "description": "Un portrait noir et blanc au regard intense, entouré de mains.", "image": "oeuvre-01.png", "h": 2.8, "w": 2.2187989556135768},
+{"title": "Sur l'herbe", "ratio": .8, "x": -3.5, "z": -6.83, "rotation": 0, "description": "Une jeune fille allongée dans l'herbe, un sac rouge et un téléphone posés à côté, dans une page de carnet.", "image": "https://z-cdn-media.chatglm.cn/files/00b9f027-8d1a-43e6-aab1-569ca6718370.jpeg?auth_key=1892084418-610f6122b73343b48ec4a4ca302a74db-0-dc652823f29cacb7a4b4fb1245a86d45", "h": 2.8, "w": 2.24},
+{"title": "Les grandes oreilles", "ratio": .8, "x": 3.5, "z": -6.83, "rotation": 0, "description": "Un personnage aux grandes oreilles et à l'air nonchalant, esquissé dans des bruns rouges et signé « AH ».", "image": "https://z-cdn-media.chatglm.cn/files/3219293a-0784-4502-ab24-2bcf3b47379b.jpeg?auth_key=1892084418-51845ba0137f40c9a07131462c63c436-0-839c78bddc76bbd39bef1467d25d64b2", "h": 2.8, "w": 2.24},
+{"title": "À la palette", "ratio": .8955613577023499, "x": -5.83, "z": -3.2, "rotation": 1.5707963267948966, "description": "Une artiste à la casquette rouge, pinceau et palette en main.", "image": "oeuvre-02.png", "h": 2.8, "w": 2.5075718015665798},
+{"title": "Pas de danse", "ratio": .8955613577023499, "x": 5.83, "z": -3.2, "rotation": -1.5707963267948966, "description": "Deux personnages souriants réunis dans un mouvement de danse.", "image": "oeuvre-03.png", "h": 2.8, "w": 2.5075718015665798},
+{"title": "Au soleil", "ratio": 1, "x": -5.83, "z": -.6, "rotation": 1.5707963267948966, "description": "Deux amis souriants sous un soleil à rayons, dans un dessin au format rond.", "image": "https://z-cdn-media.chatglm.cn/files/ecbe25de-e36f-43b1-a9ff-c1de4218faae.jpeg?auth_key=1892084418-de9541a8fd294ff5bf090618d27a94e4-0-966aa58b9dbc833153adfa986a82f577", "h": 2.2, "w": 2.2},
+{"title": "Le rire", "ratio": .8, "x": 5.83, "z": -.6, "rotation": -1.5707963267948966, "description": "Un visage hilare sous une casquette marquée d'un S, lunettes sur le nez, brossé dans des bruns profonds.", "image": "https://z-cdn-media.chatglm.cn/files/721fe5c3-b38f-4672-8679-99ef85040549.jpeg?auth_key=1892084418-8686ea8f2bba403b8634ad13d6d33734-0-62e7710fd2add5dad650121e2f3e76e9", "h": 2.6, "w": 2.08},
+{"title": "Portrait sur fond vert", "ratio": .8955613577023499, "x": -5.83, "z": 2, "rotation": 1.5707963267948966, "description": "Un personnage aux yeux verts, vêtu de rouge sur un fond vert.", "image": "oeuvre-04.png", "h": 2.8, "w": 2.5075718015665798},
+{"title": "Énergie", "ratio": .821505376344086, "x": 5.83, "z": 2, "rotation": -1.5707963267948966, "description": "Une composition expressive aux accents de bande dessinée.", "image": "oeuvre-05.png", "h": 2.8, "w": 2.3002150537634405},
+{"title": "Face caméra", "ratio": .85, "x": 5.83, "z": 4.75, "rotation": -1.5707963267948966, "description": "Une jeune fille aux couettes, entourée d'un chapeau, d'un appareil photo et d'un sac jaune, sur un fond rose et bleu où clignote « REC ».", "image": "https://z-cdn-media.chatglm.cn/files/a7593537-63e8-416c-9854-2d594ac05afb.png?auth_key=1892084418-115f0909b70143b8aa1ddb3a329a1217-0-f8d18bc2e929691cd54d7ece91d7ab26", "h": 2.8, "w": 2.38},
+{"title": "Le basketteur", "ratio": .6573033707865169, "x": -5.83, "z": 7.5, "rotation": 1.5707963267948966, "description": "Un personnage souriant en tenue claire, un ballon de basket sous le bras.", "image": "oeuvre-06.png", "h": 2.8, "w": 1.840449438202247},
+{"title": "Pensif", "ratio": .6573033707865169, "x": 5.83, "z": 7.5, "rotation": -1.5707963267948966, "description": "Un personnage en noir, la main posée contre le visage.", "image": "oeuvre-07.png", "h": 2.8, "w": 1.840449438202247}];
+const $=s=>document.querySelector(s), count=works.length, total=String(count).padStart(2,'0');
 const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
 let selected=0,visiting=false,guided=false,tourElapsed=0,scene,camera,renderer,raycaster,floorMesh,hoverRing,artMeshes=[],transition=null,keys=new Set(),yaw=0,pitch=0,targetYaw=0,targetPitch=0;
 const current=new THREE.Vector3(1.3,1.72,9),target=current.clone(), pointer=new THREE.Vector2();
 function number(i){return String(i+1).padStart(2,'0')}function stopTour(){guided=false;tourElapsed=0;$('#autotour').textContent='▷ Visite guidée';$('#autotour').setAttribute('aria-pressed','false');$('#tourprogress').style.width='0'}
 function setVisiting(){visiting=true;document.body.classList.add('visiting')}
-function updateLabels(){let w=works[selected];$('#position').textContent='LA GALERIE / '+number(selected);$('#counter').textContent=number(selected)+' / 07';$('.scene-label span').textContent=number(selected)+' — 07';$('.scene-label p').textContent=w.title;document.querySelectorAll('#mapButtons button').forEach((b,i)=>b.classList.toggle('current',i===selected));}
-const obstacles=[[-2.05,2.05,2.35,4.3],[-5.9,-3.5,4.1,6.3],[3.45,5.9,-1,1.15],[-5.1,-4,-6,-4.8],[4,5.1,4.6,5.8]];
+function updateLabels(){let w=works[selected];$('#position').textContent='LA GALERIE / '+number(selected);$('#counter').textContent=number(selected)+' / '+total;$('.scene-label span').textContent=number(selected)+' — '+total;$('.scene-label p').textContent=w.title;document.querySelectorAll('#mapButtons button').forEach((b,i)=>b.classList.toggle('current',i===selected));}
+// The right-hand alcove now lives at the rear of the lounge; the second collectible moved to the coffee-table corner, so no footprint blocks the new paintings.
+const obstacles=[[-2.05,2.05,2.35,4.3],[-5.9,-3.5,4.1,6.3],[3.45,5.9,12.4,14.5],[-5.1,-4,-6,-4.8]];
 function walkable(x,z){return !obstacles.some(([l,r,t,b])=>x>l&&x<r&&z>t&&z<b)}
 function clearSegment(a,b){
  const dx=b.x-a.x,dz=b.z-a.z;
@@ -26,15 +38,15 @@ function onPath(points,t){const lengths=points.slice(1).map((p,i)=>p.distanceTo(
 function angleNear(value,base){return base+Math.atan2(Math.sin(value-base),Math.cos(value-base))}
 function go(i,automatic=false){if(!automatic)stopTour();selected=(i+count)%count;setVisiting();const w=works[selected],n=new THREE.Vector3(Math.sin(w.rotation),0,Math.cos(w.rotation));const distance=selected>=3?(innerWidth<700?Math.min(3.5,w.w*1.2):3.15):(innerWidth<700?Math.max(3.7,w.w*1.2):4.1);const dest=new THREE.Vector3(w.x,1.72,w.z).addScaledVector(n,distance);target.copy(dest);targetYaw=angleNear(Math.atan2(-n.x,n.z),yaw);targetPitch=Math.atan2(2.6-1.72,distance);transition={from:current.clone(),to:dest.clone(),yawFrom:yaw,yawTo:targetYaw,pitchFrom:pitch,pitchTo:targetPitch,t:0};tourElapsed=0;updateLabels();$('#artHint').style.display='block';}
 function openDetail(i){stopTour();selected=(i+count)%count;let w=works[selected];$('#detailImage').src=w.image;$('#detailImage').alt='Nowemi — '+w.title;$('#detailTitle').textContent=w.title;$('#detailNumber').textContent='ŒUVRE '+number(selected)+' / TITRE DESCRIPTIF';$('#description').textContent=w.description;$('.detail-image').classList.remove('zoomed');$('#zoom').textContent='Agrandir ＋';if($('#works').open)$('#works').close();if(!$('#detail').open)$('#detail').showModal()}
-works.forEach((w,i)=>{const b=document.createElement('button');b.className='work-card';b.innerHTML=`<img src="${w.image}" alt="Nowemi — ${w.title}"><h3>${w.title}</h3><span>0${i+1} / Rejoindre le tableau →</span>`;b.onclick=()=>{$('#works').close();go(i)};$('#workGrid').append(b);const m=document.createElement('button');m.textContent=number(i);m.setAttribute('aria-label','Rejoindre '+w.title);m.style.left=(i===0?50:i%2?14:86)+'%';m.style.top=(i===0?8:i<3?27:i<5?57:88)+'%';m.onclick=()=>go(i);$('#mapButtons').append(m)});
-$('#collection').onclick=()=>{stopTour();$('#works').showModal()};$('#fallbackCollection').onclick=()=>$('#works').showModal();document.querySelectorAll('dialog .close').forEach(b=>b.onclick=()=>b.closest('dialog').close());document.querySelectorAll('dialog').forEach(d=>{d.addEventListener('close',()=>{if(d.id==='detail')go(selected)});d.addEventListener('click',e=>{if(e.target===d){let r=d.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)d.close()}})});
-$('#detailPrev').onclick=()=>openDetail(selected-1);$('#detailNext').onclick=()=>openDetail(selected+1);function zoom(){let a=$('.detail-image').classList.toggle('zoomed');$('#zoom').textContent=a?'Réduire −':'Agrandir ＋'}$('#zoom').onclick=zoom;$('#detailImage').onclick=zoom;
-$('#help').onclick=()=>{$('#guide').hidden=!$('#guide').hidden;stopTour()};$('#closeGuide').onclick=()=>$('#guide').hidden=true;
-$('#fullscreen').onclick=async()=>{try{if(document.fullscreenElement)await document.exitFullscreen();else await document.documentElement.requestFullscreen()}catch{}};
-$('#enter').onclick=()=>go(0);$('#next').onclick=()=>go(visiting?selected+1:0);$('#previous').onclick=()=>go(visiting?selected-1:6);$('#artHint').onclick=()=>openDetail(selected);
-$('#autotour').onclick=()=>{if(guided)stopTour();else{go(visiting?selected:0,true);guided=true;$('#autotour').textContent='Ⅱ Mettre en pause';$('#autotour').setAttribute('aria-pressed','true')}};
-$('#hideui').onclick=()=>{document.body.classList.add('contemplating');$('#restoreui').hidden=false};$('#restoreui').onclick=()=>{document.body.classList.remove('contemplating');$('#restoreui').hidden=true};
-$('#overview').onclick=()=>{stopTour();visiting=false;document.body.classList.remove('visiting');target.set(1.3,1.72,9);targetYaw=angleNear(-.08,yaw);targetPitch=.015;transition={from:current.clone(),to:target.clone(),yawFrom:yaw,yawTo:targetYaw,pitchFrom:pitch,pitchTo:targetPitch,t:0};$('#position').textContent='LE VESTIBULE';$('#counter').textContent='Visite libre';$('.scene-label p').textContent='Des histoires en couleurs.'};
+works.forEach((w,i)=>{const b=document.createElement('button');b.className='work-card';b.innerHTML=`<img src="${w.image}" alt="Nowemi — ${w.title}"><h3>${w.title}</h3><span>${number(i)} / Rejoindre le tableau →</span>`;b.onclick=()=>{$('#works').close();go(i)};$('#workGrid').append(b);const m=document.createElement('button');m.textContent=number(i);m.setAttribute('aria-label','Rejoindre '+w.title);m.style.left=(50+w.x*6.2)+'%';m.style.top=(27+(w.z+3.2)*5.7)+'%';m.onclick=()=>go(i);$('#mapButtons').append(m)});
+ $('#collection').onclick=()=>{stopTour();$('#works').showModal()};$('#fallbackCollection').onclick=()=>$('#works').showModal();document.querySelectorAll('dialog .close').forEach(b=>b.onclick=()=>b.closest('dialog').close());document.querySelectorAll('dialog').forEach(d=>{d.addEventListener('close',()=>{if(d.id==='detail')go(selected)});d.addEventListener('click',e=>{if(e.target===d){let r=d.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)d.close()}})});
+ $('#detailPrev').onclick=()=>openDetail(selected-1);$('#detailNext').onclick=()=>openDetail(selected+1);function zoom(){let a=$('.detail-image').classList.toggle('zoomed');$('#zoom').textContent=a?'Réduire −':'Agrandir ＋'}$('#zoom').onclick=zoom;$('#detailImage').onclick=zoom;
+ $('#help').onclick=()=>{$('#guide').hidden=!$('#guide').hidden;stopTour()};$('#closeGuide').onclick=()=>{$('#guide').hidden=true};
+ $('#fullscreen').onclick=async()=>{try{if(document.fullscreenElement)await document.exitFullscreen();else await document.documentElement.requestFullscreen()}catch{}};
+ $('#enter').onclick=()=>go(0);$('#next').onclick=()=>go(visiting?selected+1:0);$('#previous').onclick=()=>go(visiting?selected-1:count-1);$('#artHint').onclick=()=>openDetail(selected);
+ $('#autotour').onclick=()=>{if(guided)stopTour();else{go(visiting?selected:0,true);guided=true;$('#autotour').textContent='Ⅱ Mettre en pause';$('#autotour').setAttribute('aria-pressed','true')}};
+ $('#hideui').onclick=()=>{document.body.classList.add('contemplating');$('#restoreui').hidden=false};$('#restoreui').onclick=()=>{document.body.classList.remove('contemplating');$('#restoreui').hidden=true};
+ $('#overview').onclick=()=>{stopTour();visiting=false;document.body.classList.remove('visiting');target.set(1.3,1.72,9);targetYaw=angleNear(-.08,yaw);targetPitch=.015;transition={from:current.clone(),to:target.clone(),yawFrom:yaw,yawTo:targetYaw,pitchFrom:pitch,pitchTo:targetPitch,t:0};$('#position').textContent='LE VESTIBULE';$('#counter').textContent='Visite libre';$('.scene-label p').textContent='Des histoires en couleurs.'};
 function free(){if(transition){target.copy(current);targetYaw=yaw;targetPitch=pitch;transition=null}stopTour();setVisiting();$('#position').textContent='PROMENADE LIBRE';$('#counter').textContent='Visite libre'}
 function move(forward,side,dt){free();let nx=target.x+(Math.sin(targetYaw)*forward+Math.cos(targetYaw)*side)*dt,nz=target.z+(-Math.cos(targetYaw)*forward+Math.sin(targetYaw)*side)*dt;nx=THREE.MathUtils.clamp(nx,-5.05,5.05);nz=THREE.MathUtils.clamp(nz,-5.8,10.5);if(walkable(nx,nz)){target.x=nx;target.z=nz}}
 const movementKeys=['arrowup','arrowdown','arrowleft','arrowright','w','a','s','d','z','q'];window.addEventListener('keydown',e=>{if($('dialog[open]')||e.target.closest('button,a,input'))return;let k=e.key.toLowerCase();if(movementKeys.includes(k)){e.preventDefault();keys.add(k)}if(e.key==='Escape')$('#restoreui').click()});window.addEventListener('keyup',e=>keys.delete(e.key.toLowerCase()));window.addEventListener('blur',()=>keys.clear());document.addEventListener('visibilitychange',()=>{keys.clear();if(document.hidden)stopTour()});
@@ -71,8 +83,9 @@ cylinder(.8,.12,0,.72,13,tableMat);cylinder(.36,.65,0,.34,13,tableMat);
 const wood=new THREE.MeshStandardMaterial({color:0x774832,roughness:.85});
 surface(wood,1,.006,.32);
 for(let x=-5.7;x<5.8;x+=.22)box(.075,5.7,.07,x,2.85,-6.86,wood);
-const panelColors=[0x284f53,0xae5576,0x684e89,0xa84c30,0x315854,0x78495e,0xa45e3b];
-works.forEach((w,i)=>{let panel=new THREE.Mesh(new THREE.BoxGeometry(w.w+.5,w.h+.5,.06),fabric(panelColors[i]));panel.position.set(w.x,2.6,w.z);panel.rotation.y=w.rotation;panel.translateZ(-.08);scene.add(panel)});
+// Panels are slimmed so neighbouring works on the same wall never overlap.
+const panelColors=[0x284f53,0xae5576,0x684e89,0xa84c30,0x315854,0x78495e,0xa45e3b,0x8a6a4a,0x4a6b6b,0x8a4a5c,0x55608c,0x6b7a4a];
+works.forEach((w,i)=>{let panel=new THREE.Mesh(new THREE.BoxGeometry(w.w+.2,w.h+.2,.06),fabric(panelColors[i]));panel.position.set(w.x,2.6,w.z);panel.rotation.y=w.rotation;panel.translateZ(-.08);scene.add(panel)});
 // Continuous neon accents, with local light washing the ceiling.
 const pinkGlow=new THREE.MeshBasicMaterial({color:0xff548f}),cyanGlow=new THREE.MeshBasicMaterial({color:0x52e8e2});
 box(.035,.035,23,-5.7,4.85,5,pinkGlow);box(.035,.035,23,5.7,4.85,5,cyanGlow);box(11.4,.035,.035,0,4.85,-6.75,pinkGlow);
@@ -93,7 +106,7 @@ const ductMat=new THREE.MeshStandardMaterial({color:0x827b80,roughness:.4,metaln
 surface(ductMat,4,.0006,.12);
 const duct=cylinder(.21,22,-3.4,5.35,5,ductMat);duct.rotation.x=Math.PI/2;
 for(let z=-5;z<16;z+=2){let ring=new THREE.Mesh(new THREE.TorusGeometry(.215,.018,8,24),steel);ring.position.set(-3.4,5.35,z);scene.add(ring);box(.025,.35,.025,-3.4,5.74,z,steel)}
-// High factory windows remain above all seven artworks.
+// High factory windows remain above all artworks.
 for(const side of [-1,1])for(const z of [-3.2,2,7.5]){
  const pane=new THREE.Mesh(new THREE.PlaneGeometry(3.3,.66),skyMat);pane.position.set(side*5.865,5.30,z);pane.rotation.y=-side*Math.PI/2;scene.add(pane);
  for(const dz of [-1.68,0,1.68])box(.10,.76,.045,side*5.82,5.3,z+dz,steel);
@@ -139,28 +152,30 @@ for(const [x,z] of [[0,-.3],[1.8,5.2],[-1.5,11.5]]){
  const shade=new THREE.Mesh(new THREE.ConeGeometry(.42,.28,40,1,true),tableMat);shade.position.set(x,4.51,z);shade.castShadow=true;scene.add(shade);
  puff(x,4.38,z,.23,.075,.23,new THREE.MeshBasicMaterial({color:0xffd2a2}));
 }
-for(const side of [-1,1])for(const z of [-.2,5]){
+// Sconces moved to wall stretches left free by the denser hang.
+for(const side of [-1,1])for(const z of(side<0?[-5.3,5]:[-5.3,8.9])){
  box(.16,.38,.16,side*5.72,2.8,z,steel);box(.17,.05,.17,side*5.70,3.02,z,new THREE.MeshBasicMaterial({color:0xffba78}));
 }
 
-// Furnished alcoves along the visitor route.
+// Furnished alcoves along the visitor route: the left one stays put...
 const cobalt=fabric(0x24498e),yellow=fabric(0xf6bb25),ivory=fabric(0xf2e1c6);
 for(let i=0;i<4;i++){const z=4.65+i*.35;puff(-4.95,.43,z,.60,.31,.25,cobalt);puff(-5.38,.91,z,.22,.52,.25,cobalt)}
 for(const z of [4.45,5.95])puff(-4.94,.68,z,.62,.27,.17,cobalt);
 puff(-5.07,1.05,4.93,.18,.28,.24,yellow).rotation.x=.2;
 cylinder(.35,.065,-3.94,.61,5.2,wood);cylinder(.11,.56,-3.94,.3,5.2,steel);
 box(.25,.045,.30,-3.94,.68,5.2,rose);cylinder(.065,.13,-3.96,.77,5.2,cream);
-for(let i=0;i<6;i++){const z=-.55+i*.2;puff(4.85,.46,z,.51,.30,.145,i%2?ivory:rose);puff(5.21,.90,z,.18,.50,.145,i%2?ivory:rose)}
-puff(4.7,.95,.1,.17,.29,.30,yellow);
-cylinder(.32,.08,3.96,.58,.05,tableMat);cylinder(.15,.52,3.96,.28,.05,tableMat);
-puff(3.96,.85,.05,.17,.19,.17,new THREE.MeshBasicMaterial({color:0xffc14b}));
+// ...while the right-hand alcove now backs onto the rear brickwork, freeing its wall for new paintings.
+for(let i=0;i<6;i++){const z=12.85+i*.2;puff(4.85,.46,z,.51,.30,.145,i%2?ivory:rose);puff(5.21,.90,z,.18,.50,.145,i%2?ivory:rose)}
+puff(4.7,.95,13.5,.17,.29,.30,yellow);
+cylinder(.32,.08,3.96,.58,13.45,tableMat);cylinder(.15,.52,3.96,.28,13.45,tableMat);
+puff(3.96,.85,13.45,.17,.19,.17,new THREE.MeshBasicMaterial({color:0xffc14b}));
 // Checkered rugs tie each seating group together without blocking movement.
 for(let i=0;i<6;i++)for(let j=0;j<6;j++){
  box(.36,.012,.36,-5.38+i*.36,.017,4.3+j*.36,(i+j)%2?ivory:steel);
- box(.34,.012,.34,3.55+i*.34,.017,-.8+j*.34,(i+j)%2?rose:ivory);
+ box(.34,.012,.34,3.55+i*.34,.017,12.6+j*.34,(i+j)%2?rose:ivory);
 }
-// Low gallery consoles fill the space beneath the artworks.
-works.slice(1).forEach((w,i)=>{let side=Math.sign(w.x);box(.42,.055,1.8,side*5.55,.66,w.z,wood);for(const dz of [-.74,.74])box(.055,.61,.055,side*5.55,.33,w.z+dz,steel);for(let k=0;k<3;k++)box(.27,.035,.35,side*5.54,.71+k*.037,w.z-.5,fabric(bookColors[(i+k)%6]));puff(side*5.53,.84,w.z+.50,.12,.16,.12,teal)});
+// Low gallery consoles fill the space beneath the side-wall artworks.
+works.forEach((w,i)=>{if(Math.abs(w.rotation)<.1)return;const side=Math.sign(w.x);box(.42,.055,1.8,side*5.55,.66,w.z,wood);for(const dz of[-.74,.74])box(.055,.61,.055,side*5.55,.33,w.z+dz,steel);for(let k=0;k<3;k++)box(.27,.035,.35,side*5.54,.71+k*.037,w.z-.5,fabric(bookColors[(i+k)%6]));puff(side*5.53,.84,w.z+.50,.12,.16,.12,teal)});
 // Sculptural pop figures on plinths, inspired by collectible designer toys.
 function collectible(x,z,scale,color){const g=new THREE.Group();scene.add(g);const start=scene.children.length;const mat=glaze(color);
  box(.78,.46,.78,x,.23,z,rose);
@@ -169,7 +184,7 @@ function collectible(x,z,scale,color){const g=new THREE.Group();scene.add(g);con
  for(const side of [-1,1]){part(side*.34,1.57,0,.14,.15,.13);part(side*.15,.31,.02,.12,.29,.13);part(side*.15,.10,-.10,.15,.10,.23,ivory);part(side*.30,.85,0,.10,.28,.11);part(side*.22,1.13,-.22,.13,.15,.10,ivory)}
  for(const side of [-1,1])for(const rot of [-.7,.7]){let cross=box(.13*scale,.025*scale,.018*scale,x+side*.16*scale,base+1.43*scale,z-.285*scale,steel);cross.rotation.z=rot}
 }
-collectible(-4.55,-5.4,1.05,0xed5487);collectible(4.55,5.2,.85,0x33b6b2);
+collectible(-4.55,-5.4,1.05,0xed5487);collectible(-1.6,12.5,.85,0x33b6b2);
 // A large blue shelving wall creates a second visual anchor behind the lounge.
 const shelfBlue=fabric(0x2a5885),shelfRed=fabric(0xca533f);
 for(const x of [-4.9,-3.6,-2.3])box(.075,3.1,.38,x,1.57,16.5,shelfRed);
