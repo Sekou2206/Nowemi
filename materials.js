@@ -1,5 +1,4 @@
 import * as THREE from './three.module.js';
-// World-scale procedural surface detail. No texture downloads or repeated image seams.
 const detailGLSL=`
 varying vec3 vSurfacePosition;
 float surfaceHash(vec3 p){p=fract(p*.1031);p+=dot(p,p.yzx+33.33);return fract((p.x+p.y)*p.z);}
